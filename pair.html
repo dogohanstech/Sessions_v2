@@ -1,0 +1,138 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HANS_TECH-SESSION</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Orbitron', sans-serif;
+    }body {
+  height: 100vh;
+  background: url('https://files.catbox.moe/ar0hd4.png') no-repeat center center/cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.card {
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 40px;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 0 40px rgba(0, 255, 100, 0.4);
+  text-align: center;
+  color: #fff;
+}
+
+h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #00ffcc;
+  text-shadow: 0 0 10px #00ffcc;
+}
+
+input {
+  width: 100%;
+  padding: 15px;
+  margin: 15px 0;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  background: #0d0d0d;
+  color: #00ffcc;
+  outline: none;
+  box-shadow: inset 0 0 10px #00ffcc;
+}
+
+button {
+  width: 100%;
+  padding: 15px;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  background: #ff0040;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+button:hover {
+  background: #00ffcc;
+  color: #000;
+  box-shadow: 0 0 15px #00ffcc;
+}
+
+#result {
+  margin-top: 20px;
+  font-size: 1.2rem;
+  color: #00ffcc;
+  word-wrap: break-word;
+}
+
+#copy {
+  margin-top: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  color: #ff0040;
+  text-shadow: 0 0 5px red;
+}
+
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2>HI 👋 WELCOME</h2>
+    <p>Enter your number with country code</p>
+    <input type="number" id="number" placeholder="e.g. 2557607XXXX" />
+    <button onclick="getCode()">Get Code</button>
+    <div id="result"></div>
+    <div id="copy" onclick="copyCode()"></div>
+  </div>  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>  <script>
+    async function getCode() {
+      const input = document.getElementById('number');
+      const output = document.getElementById('result');
+      const copyBtn = document.getElementById('copy');
+
+      const num = input.value.replace(/\D/g, '');
+      if (num.length < 11) {
+        output.innerHTML = 'Invalid number';
+        copyBtn.innerHTML = '';
+        return;
+      }
+
+      output.innerHTML = 'Please wait...';
+      copyBtn.innerHTML = '';
+
+      try {
+        const { data } = await axios(`/code?number=${num}`);
+        const code = data.code || 'Unavailable';
+        output.innerHTML = `Code: <span style="color:#fff">${code}</span>`;
+        copyBtn.innerHTML = 'Click to Copy';
+        copyBtn.dataset.copy = code;
+      } catch (err) {
+        output.innerHTML = 'Error fetching code';
+      }
+    }
+
+    function copyCode() {
+      const copyBtn = document.getElementById('copy');
+      const text = copyBtn.dataset.copy;
+      if (text) {
+        navigator.clipboard.writeText(text).then(() => {
+          copyBtn.innerHTML = 'Copied!';
+          setTimeout(() => copyBtn.innerHTML = 'Click to Copy', 1500);
+        });
+      }
+    }
+  </script></body>
+</html>

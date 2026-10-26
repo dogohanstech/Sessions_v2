@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>HANS_TECH_SESSION</title>
+  <link rel="shortcut icon" href="https://i.ibb.co/gb9PrWxh/shaban-sobx-md.jpg" type="image/x-icon" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: 'Orbitron', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      height: 100%;
+      width: 100%;
+      overflow: hidden; /* Prevent scrolling = no shake */
+    }
+
+    body {
+      background: url('https://files.catbox.moe/ar0hd4.png') no-repeat center center fixed;
+      background-size: cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      color: white;
+    }
+
+    h3 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+      text-shadow: 0 0 10px #0f0, 0 0 20px #0f0;
+      animation: fadeIn 2s ease forwards;
+    }
+
+    .button-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 12px 24px;
+      font-size: 16px;
+      font-weight: bold;
+      color: #ffffff;
+      text-decoration: none;
+      background: linear-gradient(145deg, #111111, #1c1c1c);
+      border: none;
+      border-radius: 12px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 0 12px rgba(0, 255, 0, 0.6);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .button::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(60deg, #00ff00, #ff0000, #00ff00);
+      background-size: 400% 400%;
+      animation: glow 5s linear infinite;
+      z-index: -1;
+      filter: blur(30px);
+    }
+
+    .button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px #00ff00, 0 0 30px #ff0000;
+    }
+
+    @keyframes glow {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: translateY(-10px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    footer {
+      position: fixed;
+      bottom: 10px;
+      text-align: center;
+      width: 100%;
+      font-size: 14px;
+      color: #00ff00;
+      text-shadow: 0 0 5px red;
+      z-index: 1;
+    }
+
+    @media (max-width: 500px) {
+      .button {
+        width: 80%;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h3>HANS_TECH SESSION</h3>
+
+  <div class="button-container">
+    <a class="button" href="/qr" target="_blank">QR-CODE</a>
+    <a class="button" href="/pair" target="_blank">PAIRING-CODE</a>
+    <a class="button" href="https://github.com/Mrhanstz/" target="_blank">FOLLOW HANS GITHUB</a>
+    <a class="button" href="https://whatsapp.com/channel/0029VasiOoR3bbUw5aV4qB31" target="_blank">WHATSAPP CHANNEL</a>
+    <p style="margin-top: 15px; color: #f2f2f2;">HAVE ANY CONTACT ? CLICK BELOW</p>
+    <a class="button" href="https://wa.me/+255658407824?text=Hi_Am_From_your_pair-site" target="_blank">CONTACT_HANS</a>
+  </div>
+
+  <footer>HANS-XMD AND VORTEX-XMD &copy; <span id="currentYear"></span></footer>
+
+  <script>
+    document.getElementById("currentYear").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
